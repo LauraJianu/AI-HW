@@ -1,0 +1,100 @@
+%i1) se defineste predicatul agenda (este_agenda)
+este_agenda(agenda([intalnire(Idint, Descr, Idloc, Idclient, Orainceput)|Xs])):-
+	atom(Idint),
+	atom(Descr),
+	atom(Idloc),
+	atom(Idclient),
+	integer(Orainceput),
+	Orainceput >= 0,
+	Orainceput =<23,
+	este_agenda(agenda(Xs)).
+
+este_agenda(agenda([])).
+
+
+%i2) se defineste un predicat determina_locatii_clienti pentru a determina listele de locatii
+determina_locatii_clienti(A, L, C) :- determina_locatii_clienti(A, [], L, [], C).
+
+determina_locatii_clienti(agenda([intalnire(Idint, Descr, Locatie, Client, Ora) | Xs]), L2, L, C2, C) :-
+	not(member_of(Locatie, L2)), !,
+	determina_locatii_clienti(agenda([intalnire(Idint, Descr, Locatie, Client, Ora) | Xs]), [Locatie|L2], L, C2, C).
+
+determina_locatii_clienti(agenda([intalnire(Idint, Descr, Locatie, Client, Ora) | Xs]), L2, L, C2, C) :-
+	not(member_of(Client, C2)), !,
+	determina_locatii_clienti(agenda([intalnire(Idint, Descr, Locatie, Client, Ora) | Xs]), L2, L, [Client|C2], C).
+
+determina_locatii_clienti(agenda([intalnire(_, _, Locatie, Client, _) | Xs]), L2, L, C2, C) :-
+	determina_locatii_clienti(agenda(Xs), L2, L, C2, C).
+
+determina_locatii_clienti(agenda([]), L2, L, C2, C) :-
+	reverse(L2, L3),
+	reverse(C2, C3),
+	multimi_egale(L3, L),
+	multimi_egale(C3, C).
+
+multimi_egale(X,Y):-
+	Y=X,!.
+multimi_egale([X|Xs],Y):-
+	member_of(X,Y),
+	elimin(Y,X,Ys),
+	multimi_egale(Xs,Ys).
+
+member_of(X,[X|T]).
+member_of(X,[H|T]):-
+	member_of(X,T).
+
+elimin([E|Xs],E,Xs).
+elimin([X|Xs],E,[X|Rs]):-
+	X\==E,
+        elimin(Xs,E,Rs).
+elimin([],_,[]).
+
+reverse(Xs,Ys):-
+	reverse(Xs,[],Ys).
+reverse([],Xs,Xs).
+reverse([X|Xs],T,Ys):-
+	reverse(Xs,[X|T],Ys).
+
+%i3)se defineste un predicat conflict pentru intalnirile din agenda 
+conflict(Int1, Int2, A, C) :- 
+	findelem(A, Int1, X), 
+	findelem(A, Int2, Y),
+	checkLoc(X, Y, Z),
+	checkTimp(X, Y, Z, C).
+
+findelem(agenda([]), _, _).
+findelem(agenda([intalnire(Idint, Descr, Locatie, Client, Ora) | _]), 
+	Idint, 
+	intalnire(Idint, Descr, Locatie, Client, Ora)) :- !.
+findelem(agenda([_|Xs]), Id, X) :- 
+	findelem(agenda(Xs), Id, X).
+
+checkLoc(intalnire(_, _, Locatie, _, _), intalnire(_, _, Locatie, _, _), [Locatie]) :- !.
+checkLoc(intalnire(_, _, _, _, _), intalnire(_, _, _, _, _), []).
+checkTimp(intalnire(_, _, _, _, Ora), intalnire(_, _, _, _, Ora),C, X) :- append(C, [Ora], X), !.
+checkTimp(intalnire(_, _, _, _, _), intalnire(_, _, _, _, _),C, C).
+
+%i4)Sa se defineasca un predicat contorizare(A,N) care este adevarat daca N este numarul intalnirilor cu clienti diferiti din cadrul agendei A de intalniri ale unui avocat.
+
+contorizare(A, N) :- gasesteClienti(A, Lista), length(Lista, N).
+
+gasesteClienti(agenda([]), _).
+gasesteClienti(agenda([intalnire(_, _, _, Client,_)|Xs]), Lista):-
+	member_of(Client,Lista),!,
+	gasesteClienti(agenda(Xs), Lista).
+gasesteClienti(agenda([intalnire(_, _, _,_,_)|Xs]), Lista):-
+	gasesteClienti(agenda(Xs),[Lista|O]).
+
+
+
+
+
+
+
+
+
+
+
+
+
+

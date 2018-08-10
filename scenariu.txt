@@ -1,0 +1,311 @@
+% ------------------------------------------------------------------
+% Teste pentru intrebarea i).
+% ------------------------------------------------------------------
+ 
+% ------------------------------------------------------------------
+% teste corecte
+% ------------------------------------------------------------------
+
+date_test(1, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i2, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i3, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i4, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,12),
+					intalnire(i6, 'Proces 1', loc3, c2,12)])).
+
+
+
+
+date_test(2, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)])).
+					
+
+date_test(3,agenda([])).
+
+% -------------------------------------------------------------------
+% teste incorecte
+% -------------------------------------------------------------------
+
+date_test(4, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 100),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i3, 'Proces 1', loc3, c2, 14)])).
+					
+date_test(5, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 40),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2, 14)])).
+
+
+% ----------------------------------------------------------------
+% Teste pentru intrebarea ii)
+% ----------------------------------------------------------------
+
+% ----------------------------------------------------------------
+% teste corecte
+% ----------------------------------------------------------------
+
+date_test(6,agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					[loc1, loc2, loc3], 
+					[c1, c2, c3]).
+date_test(7,agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c1, 9),
+					intalnire(i6, 'Proces juridic 3', loc1, c1, 10),
+					intalnire(i2, 'Proces juridic 4', loc1, c1, 12),
+					intalnire(i5, 'Proces 5', loc1, c1,13),
+					intalnire(i3, 'Proces 1', loc1, c1,14)]),
+					
+					[loc1], 
+					[c1]).
+date_test(8,agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc2, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc3, c3, 10)]),
+					
+					[loc1, loc2, loc3], 
+					[c1, c2, c3]). 
+date_test(9, agenda([]), [], []).
+
+% ------------------------------------------------------------
+% teste incorecte
+% ------------------------------------------------------------
+
+date_test(10,agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					[loc1, loc2], 
+					[c1, c2, c3, c4]).
+
+
+% -------------------------------------------------------------
+% Teste pt intrebarea iii)
+% -------------------------------------------------------------
+
+% -------------------------------------------------------------
+% teste corecte
+% -------------------------------------------------------------
+
+date_test(11, i1, i2,
+					agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					[]).
+date_test(12, i2, i5,
+					agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc2, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c2,12),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					[loc2, 12]).
+date_test(13, i1, i6, 
+					agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc1, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					[loc1]).
+date_test(14, i1, i6, 
+					agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 8),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]), 
+					
+					[8]).
+
+% ----------------------------------------------------------
+% teste incorecte
+% ----------------------------------------------------------
+
+date_test(15, i1, i2,
+					agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					[loc1, 8]).
+
+
+% ------------------------------------------------------
+% Teste pt intrebarea iv)
+% ------------------------------------------------------
+
+% ------------------------------------------------------
+% teste corecte
+% ------------------------------------------------------
+
+date_test(16, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c1, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c1, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c1, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c1,14)]),
+					1).
+date_test(17, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c3, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c4, 12),
+					intalnire(i5, 'Proces 5', loc2, c5,13),
+					intalnire(i3, 'Proces 1', loc3, c6,14)]),
+					6).
+date_test(18, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c1, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c1, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c1, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c1,14)]),
+					1).
+date_test(19, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c1, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c1, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c1,14)]),
+					2).
+
+% -------------------------------------------------------------
+% teste incorecte
+% -------------------------------------------------------------
+
+date_test(20, agenda([intalnire(i1, 'Proces juridic 1', loc1, c1, 8),
+					intalnire(i4, 'Proces juridic 2', loc1, c2, 9),
+					intalnire(i6, 'Proces juridic 3', loc2, c2, 10),
+					intalnire(i2, 'Proces juridic 4', loc3, c3, 12),
+					intalnire(i5, 'Proces 5', loc2, c1,13),
+					intalnire(i3, 'Proces 1', loc3, c2,14)]),
+					
+					1).
+	
+
+% ------------------------------------------------------------
+% ------------------------------------------------------------
+% ------------------------------------------------------------
+
+
+test(M,P,1) :-
+  nl, write(M), write(': '),
+  catch(P,X,(write('Eroare: '),write(X),nl)),
+  !, 
+  write('OK'),
+  nl.
+
+test(_,_,0) :- 
+  write('EROARE'), nl.  
+
+testID(ID,N) :- 
+  1 =< ID,
+  ID =< 3,
+  test('Test'-ID,
+        (date_test(ID,A),este_agenda(A)),
+        N).
+
+testID(ID,N) :- 
+  4 =< ID,
+  ID =< 5,
+  test('Test'-ID,
+        (date_test(ID,A),\+ este_agenda(A)),
+        N).
+
+testID(ID,N) :- 
+  6 =< ID,
+  ID =< 9,
+  test('Test'-ID,
+        (date_test(ID,A,L,C),determina_locatii_clienti(A,L1,C1),L=L1, C=C1),
+        N).
+
+testID(10,N) :- 
+  test('Test'-10,
+        (date_test(10,A,L,C),determina_locatii_clienti(A,L1,C1),L\=L1,C\=C1),
+        N).
+
+testID(ID,N) :- 
+  11 =< ID,
+  ID =< 14,
+  test('Test'-ID,
+        (date_test(ID,Id1, Id2, A, Confl),conflict(Id1, Id2, A, Confl1),Confl=Confl1),
+        N).
+
+testID(15,N) :- 
+  test('Test'-15,
+        (date_test(15,Id1, Id2, A, Confl),conflict(Id1, Id2, A, Confl1),Confl\=Confl1),
+        N).
+
+testID(ID,N) :- 
+  16 =< ID,
+  ID =< 19,
+  test('Test'-ID,
+        (date_test(ID,A,Nr),contorizare(A,Nr1),Nr=Nr1),
+        N).
+
+testID(20,N) :- 
+  test('Test'-20,
+        (date_test(20,A,Nr),contorizare(A,Nr1),Nr\=Nr1),
+        N).
+
+
+
+testID(ID) :-
+  testID(ID,_).
+
+testTOT :- 
+  nl,
+  write('\n\nTESTE PENTRU este_agenda/1\n===================\n'),
+  testID(1,N1),
+  testID(2,N2),
+  testID(3,N3),
+  testID(4,N4),
+  testID(5,N5), 
+  write('\n\nTESTE PENTRU determina_locatii_clienti/3\n===================\n'),
+  testID(6,N6),
+  testID(7,N7),
+  testID(8,N8),
+  testID(9,N9),
+  testID(10,N10),
+  write('\n\nTESTE PENTRU conflict/4\n===================\n'),
+  testID(11,N11),
+  testID(12,N12),
+  testID(13,N13),
+  testID(14,N14),
+  testID(15,N15),
+  write('\n\nTESTE PENTRU contorizare/2\n===================\n'),
+  testID(16,N16),
+  testID(17,N17),
+  testID(18,N18),
+  testID(19,N19),
+  testID(20,N20),
+
+  Nm is N1+N2+N3+N4+N5+N6+N7+N8+N9+N10+N11+N12+N13+N14+N15+N16+N17+N18+N19+N20,
+  nl,write('Nr teste trecute: '),
+  write(Nm),nl,nl.
+
+%
+% Suita de teste se lanseaza automat dupa consultare.
+%
+:- testTOT.
